@@ -32,7 +32,10 @@ interface IAuthStore {
 
     logout: () => Promise<void>;
 }
-
+//zustand is a small, fast, and scalable state management solution for React applications. It provides a simple API for creating and managing global state in your application. In this code, we define an authentication store using Zustand that manages the user's session, JWT token, and user information. We also use two middleware functions: immer and persist.
+//immer allows us to write mutable code while keeping the state immutable under the hood, which is a common pattern in Zustand stores. persist allows us to save the store's state to localStorage (or another storage solution) so that it persists across page reloads.
+//persist also provides an onRehydrateStorage callback, which we use to set the hydrated flag once the state has been rehydrated from storage. This can be useful for components that need to know when the store is ready to be used after a page reload.
+//rehydration is the process of restoring the state of the store from storage (like localStorage) when the application loads. This allows the user's session to persist across page reloads, so they don't have to log in again every time they refresh the page.
 export const useAuthStore = create<IAuthStore>()(
     persist(
         immer((set) => ({
